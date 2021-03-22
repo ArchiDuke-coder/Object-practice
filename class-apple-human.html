@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adam & Eva</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    function Apple(){
+        this.weight = 10;
+
+        this.decrease = function(){
+            this.weight--;
+        }
+
+        this.isEmpty = function(){
+            if (this.weight == 0){
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        this.getWeight = function(){
+            return this.weight;
+        }
+    }
+
+    function Human(name, gender, weight){
+        this.name = name;
+        this.gender = gender;
+        this.weight = weight;
+
+        this.isMale = function(){
+            if (this.gender == 'Male'){
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        this.setGender = function(gender){
+            this.gender = gender;
+        }
+
+        this.checkApple = function(Apple){
+            if (Apple.getWeight() > 0){
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        this.eat = function(Apple){
+            Apple.decrease();
+            this.weight++;
+        }
+
+
+        this.speak = function(message){
+            alert(this.name + ' said: '+message);
+        }
+
+        this.getName = function(){
+            return this.name;
+        }
+        this.setName = function(name){
+            this.name = name;
+        }
+        this.getWeight = function(){
+            return this.weight;
+        }
+        this.setWeight = function(weight){
+            this.weight = weight;
+        }
+    }
+    let apple = new Apple();
+    //apple.weight = 0;
+    let Adam = new Human('Adam', 'Male', 70);
+    let Eve = new Human('Eve', 'Female', 55);
+    if (Adam.checkApple(apple)){
+        Adam.speak("Let's eat this apple");
+        Eve.speak("Yes");
+        while (apple.isEmpty() == false){
+            Adam.eat(apple);
+            console.log(Adam.getWeight());
+            console.log(apple.weight);
+            Eve.eat(apple);
+            console.log(Eve.getWeight());
+            console.log(apple.weight);
+        };
+    } else {
+        Adam.speak("God tricked us. He ate the apple");
+        Eve.speak("Eat me instead");
+    }
+
+</script>
