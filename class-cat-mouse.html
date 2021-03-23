@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tom & Jerry</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    function Rat(name, weight, speed,status) {
+        this.name = name;
+        this.weight = weight;
+        this.speed = speed;
+        this.status = status;
+        this.speak = function () {
+            alert(this.name+': chít chít')
+        }
+        this.setStatus = function(){
+            let statusList = [true, false];
+            this.status = statusList[Math.floor(Math.random()*statusList.length)];
+        }
+        this.getStatus = function(){
+            if (this.status == false){
+                alert(this.name + ' is dead')
+            }
+        }
+    }
+
+    function Cat(name,weight,maxspeed){
+        this.name = name;
+        this.weight = weight;
+        this.speed = Math.floor(Math.random()*maxspeed);
+        this.setSpeed = function(){ this.speed = Math.floor(Math.random()*maxspeed)};
+
+        this.speak = function(){
+            alert(this.name+': meo meo');
+        }
+
+        this.catchMouse = function(mouse){
+            if (mouse.status == true && this.speed > mouse.speed) {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        this.eatMouse = function(mouse){
+            if (this.catchMouse(mouse) && mouse.status == true ){
+                mouse.status = false;
+                this.weight += mouse.weight;
+                alert(this.name +' ate '+mouse.name);
+            }
+            console.log(this.weight);
+        }
+    }
+
+    let Jerry = new Rat('Jerry',5, 30, true);
+    let Tom = new Cat('Tom',20,35);
+    let count = 1;
+
+    Jerry.speak();
+    Tom.speak();
+    while (Tom.catchMouse(Jerry) == false){
+        Tom.setSpeed();
+        console.log(Tom.catchMouse(Jerry));
+        count++;
+    }
+    alert('Need '+count+' times');
+    Jerry.setStatus();
+    Jerry.getStatus();
+    Tom.eatMouse(Jerry);
+
+</script>
