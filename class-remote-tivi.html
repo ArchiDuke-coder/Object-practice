@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Remote TV</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+
+    class TiVi {
+        constructor(channel, sound, status) {
+            this.channel = channel;
+            this.sound = sound;
+            this.status = status;
+        }
+        getChannel(){
+            if (this.status == 'On'){
+                return this.channel;
+            }
+        }
+        getSound(){
+            if (this.status == 'On'){
+                return this.sound;
+            }
+        }
+        getStatus(){
+            return this.status;
+        }
+        setChannel(channel){
+            if (this.status == 'On'){
+                this.channel = channel;
+                console.log('channel = '+channel);
+            }
+        }
+        setSound(volume){
+            if (this.status == 'On'){
+                this.sound = volume;
+                console.log('volume = '+volume);
+            }
+        }
+        setStatus(status){
+            this.status = status;
+            console.log(this.status);
+        }
+    }
+
+
+    class Remote{
+        constructor(tivi) {
+            this.code = tivi
+        }
+        changeChannel(channel){
+            this.code.setChannel(channel);
+        }
+        changeSound(sound){
+            this.code.setSound(sound);
+        }
+        changeStatus(status){
+            this.code.setStatus(status)
+        }
+    }
+
+    let tivi1 = new TiVi(0,0,'Off');
+    let remote1 = new Remote(tivi1);
+    remote1.changeStatus('On');
+    remote1.changeChannel(7);
+    remote1.changeChannel(3);
+    remote1.changeSound(tivi1.getSound()+2);
+    remote1.changeStatus('Off');
+
+</script>
